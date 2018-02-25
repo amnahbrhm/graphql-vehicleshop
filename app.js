@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 
 //connect to mongodb...
 mongoose.connect(`mongodb://127.0.0.1/vehicledb`);
-mongoose.connection.on('error', err => console.error('FAILED to connect to mongodb instance.', err))
-mongoose.connection.once('open', () => console.log('Connected to mongodb instance.'))
+mongoose.connection.on('error', err => console.error('FAILED to connect to mongodb instance.', err));
+mongoose.connection.once('open', () => console.log('Connected to mongodb instance.'));
 
 const graphqlHTTP = require('express-graphql');
-const schema = require('./graphSchema/vehicle');
+const schema = require('./graphSchema/vehicleSchemaGQL');
 
 app.get('/', (req, res)=>{
     res.end("graphql-vehicleshop is running on 3000 port...");

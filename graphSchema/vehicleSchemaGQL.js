@@ -34,6 +34,21 @@ const query = new graphql.GraphQLObjectType({
                 }
                 return vehicle.find(where);
             }
+        },
+        getByCapacity: {
+            type: new graphql.GraphQLList(VehicleSchema),
+            args: {
+                capacity: {type: graphql.GraphQLInt}
+            },
+            resolve: (_, {capacity}) => {
+                let where;
+                if (capacity){
+                    where = {engineCapacity: { $lt: capacity }};
+                }else{
+                    where = {};
+                }
+                return vehicle.find(where);
+            }
         }
     }
 })
